@@ -6,6 +6,9 @@ set noexpandtab
 set tabstop=2
 set shiftwidth=2
 set backspace=indent,eol,start
+set encoding=UTF-8
+set clipboard=unnamed
+
 " Wrap when going right or left
 set whichwrap+=>,l
 set whichwrap+=<,h
@@ -17,6 +20,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -48,7 +54,6 @@ nmap <leader>do <Plug>(coc-codeaction)
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
 
-
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
@@ -70,6 +75,10 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
+" Show hidden files in nerdtree by default
+let NERDTreeShowHidden=1
+
+
 " FZF
 nmap <C-P> :GFiles<CR>
 
@@ -77,3 +86,14 @@ nmap <C-P> :GFiles<CR>
 highlight! link SignColumn LineNr
 " Make git-gutter update more often
 set updatetime=200
+
+"Easier way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Make devicons work
+set guifont=Monaco\ Nerd\ Font\ Complete:h14
+let g:airline_powerline_fonts = 1
+
